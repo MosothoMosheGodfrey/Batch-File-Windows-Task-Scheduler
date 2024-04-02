@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{listings}
+
+\begin{document}
+
+\title{Automating Python Script Execution with Windows Task Scheduler}
+\author{Moshe G. Mosotho}
+\date{\today}
+\maketitle
+
+\section{Introduction}
+Automating a Python script using Windows Task Scheduler involves several steps. Below, I'll outline the process in detail.
+
+\section{Write Your Python Script}
+First, you need to have a Python script that you want to automate. Ensure that your script is working as expected before proceeding further.
+
+\section{Create a Batch File}
+You'll create a batch file (.bat) that will be used to execute your Python script. This batch file will serve as an intermediary between Task Scheduler and your Python script.
+\begin{lstlisting}[language=sh]
+@echo off
+cd /d <path to your Python script>
+python your_script.py
+\end{lstlisting}
+Replace \texttt{<path to your Python script>} with the full path to the directory containing your Python script, and \texttt{your\_script.py} with the name of your Python script.
+
+\section{Test the Batch File}
+Double-click the batch file to ensure it runs your Python script successfully. If it does, move on to the next step.
+
+\section{Open Task Scheduler}
+You can open Task Scheduler by searching for it in the Windows search bar or by navigating to Control Panel > Administrative Tools > Task Scheduler.
+
+\section{Create a New Task}
+\begin{enumerate}
+    \item Click on "Create Basic Task" or "Create Task" in the right-hand pane, depending on your version of Windows.
+    \item Give your task a name and description to easily identify it.
+    \item Click "Next".
+\end{enumerate}
+
+\section{Trigger}
+Choose when you want the task to start. Options include "Daily," "Weekly," "Monthly," "One time," etc. Select the appropriate option and click "Next".
+
+\section{Action}
+Choose "Start a Program" and click "Next".
+
+\section{Settings}
+\begin{enumerate}
+    \item In the "Program/script" field, browse and select your batch file (\texttt{run\_script.bat}).
+    \item In the "Start in (optional)" field, specify the directory containing your batch file (if necessary).
+    \item Click "Next".
+\end{enumerate}
+
+\section{Finish}
+Review the summary of your task. If everything looks correct, click "Finish".
+
+\section{Optional: Modify Additional Settings}
+You can modify additional settings such as setting conditions for the task to run, setting up triggers for repetitions, etc., by double-clicking the task in Task Scheduler and navigating through its properties.
+
+\section{Test the Scheduled Task}
+To ensure that your task runs correctly, right-click on the task in Task Scheduler and select "Run". Check to see if your Python script executes as expected.
+
+\section{Monitoring}
+Monitor the scheduled task's execution to ensure that it runs reliably and without errors.
+
+\end{document}
